@@ -508,7 +508,6 @@
     }
 
     function createFirework() {
-        console.log('Creating firework...');
         // Create launcher
         const launcher = document.createElement('div');
         launcher.className = 'firework-launcher';
@@ -528,7 +527,6 @@
     }
 
     function createFireworkExplosion(x, y) {
-        console.log('Creating firework explosion at:', x, y);
         const particleCount = 30;
         const colors = [
             '#FF5252', '#FFD740', '#40C4FF', '#69F0AE', '#FF4081', 
@@ -629,8 +627,9 @@
         } else if (message === '!confetti') {
             createConfetti();
         } else if (message === '!firework') {
-            console.log('Firework command received!');
             createFirework();
+        } else if (message === '!bubble') {
+            createBubbles();
         } else if (message === '!leave') {
             // Keep the !leave command working as before
             const dancer = dancers.get(data.chatname);
@@ -711,4 +710,3 @@
     </script>
 </body>
 </html>
-
