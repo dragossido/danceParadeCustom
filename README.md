@@ -16,8 +16,8 @@ Differences
 
 Versions
 --------------------
-* dancingparade_for_any_day.html  -- For everyday use
-* dancingparade_for_new_year.html  -- For the event of New Year (a firework will pop every 5 seconds) 
+* [dancingparade_for_any_day.html](https://dragossido.github.io/danceParadeCustom/dancingparade_for_any_day.html)  -- For everyday use
+* [dancingparade_for_new_year.html](https://dragossido.github.io/danceParadeCustom/dancingparade_for_new_year.html)  -- For the event of New Year (a firework will pop every 5 seconds) 
 
 Commands
 --------------------
