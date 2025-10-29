@@ -25,3 +25,8 @@ Commands
 * !firework ---> to create a firework
 * !bubble ---> to fill the parade of bubbles
 * !leave ---> to leave the parade
+
+Limits and possible improvement
+--------------------
+** TO USE IT, YOU NEED TO CREATE A !dmenu COMMAND IN THE MAIN CHAT THAT EXPLAIN HOW TO USE
+** BOTS WILL ACCESS AS A NORMAL USER TO THE DANCEPARADE
