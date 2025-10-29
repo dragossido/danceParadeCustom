@@ -196,6 +196,31 @@
                 opacity: 0;
             }
         }
+
+        .sparbubble {
+            position: absolute;
+            color: #FFD700;
+            font-size: 20px;
+            animation: bubbleFloat 3s ease-in-out infinite;
+            pointer-events: none;
+            text-shadow: 0 0 5px rgba(255,255,255,0.7);
+            filter: drop-shadow(0 0 3px rgba(255,255,255,0.5));
+            opacity: 0.8;
+            transform-origin: center;
+            left: 0;
+            bottom: 0;
+        }
+
+        @keyframes bubbleFloat {
+            0% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-var(--float-distance)) translateX(var(--sway-amount)) scale(0.5);
+                opacity: 0;
+            }
+        }
         
         .rainbow-trail {
             position: absolute;
@@ -483,7 +508,6 @@
     }
 
     function createFirework() {
-        console.log('Creating firework...');
         // Create launcher
         const launcher = document.createElement('div');
         launcher.className = 'firework-launcher';
@@ -503,7 +527,6 @@
     }
 
     function createFireworkExplosion(x, y) {
-        console.log('Creating firework explosion at:', x, y);
         const particleCount = 30;
         const colors = [
             '#FF5252', '#FFD740', '#40C4FF', '#69F0AE', '#FF4081', 
@@ -555,6 +578,42 @@
         }
     }
     
+    function createBubbles() {
+        // Create 200 bubbles over 5 seconds (40 per second)
+        const bubbleCount = 200;
+        const duration = 5000; // 5 seconds
+        const interval = duration / bubbleCount;
+    
+        for (let i = 0; i < bubbleCount; i++) {
+            setTimeout(() => {
+                const bubble = document.createElement('div');
+                bubble.className = 'sparbubble'; // Use new class name
+                bubble.textContent = '🫧';
+            
+                // Random horizontal position across the screen
+                bubble.style.left = Math.random() * window.innerWidth + 'px';
+                bubble.style.bottom = '30px'; // Start from bottom
+                bubble.style.fontSize = (10 + Math.random() * 20) + 'px'; // Random size
+            
+                // Add floating animation
+                const animationDuration = 2 + Math.random() * 3; // 2-5 seconds
+                const floatDistance = 50 + Math.random() * 100; // Random upward distance
+                const swayAmount = -20 + Math.random() * 40; // Horizontal sway
+            
+                // Set custom properties for animation
+                bubble.style.setProperty('--float-distance', floatDistance + 'px');
+                bubble.style.setProperty('--sway-amount', swayAmount + 'px');
+            
+                document.getElementById('parade-container').appendChild(bubble);
+            
+                // Remove bubble after animation completes
+                setTimeout(() => {
+                    bubble.remove();
+                }, (animationDuration * 1000) + 500);
+            }, i * interval);
+        }
+    }
+
     function sendResponse(message) {
         const response = {
             chatname: 'ParadeBot',
@@ -587,8 +646,9 @@
         } else if (message === '!confetti') {
             createConfetti();
         } else if (message === '!firework') {
-            console.log('Firework command received!');
             createFirework();
+        } else if (message === '!bubble') {
+            createBubbles();
         } else if (message === '!leave') {
             // Keep the !leave command working as before
             const dancer = dancers.get(data.chatname);
